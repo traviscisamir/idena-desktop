@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, {useState} from 'react'
 import {wordWrap, padding, margin, borderRadius} from 'polished'
-import {Absolute, Box} from '.'
+import {Absolute} from './position'
+import Box from './box'
 import Flex from './flex'
 import theme, {rem} from '../theme'
 import {
