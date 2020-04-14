@@ -44,7 +44,6 @@ export function Notification({
   delay = NOTIFICATION_DELAY,
 }) {
   const [hidden, setHidden] = useState(false)
-
   return (
     !hidden && (
       <div
