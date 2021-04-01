@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import theme, {rem} from '../theme'
+import theme from '../theme'
 import {Dim} from './box'
 
 export function Heading({
