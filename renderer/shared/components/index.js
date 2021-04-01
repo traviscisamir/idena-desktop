@@ -1,7 +1,3 @@
-import React from 'react'
-import {Button, Icon, PseudoBox} from '@chakra-ui/core'
-import {rem} from '../theme'
-
 /* eslint-disable import/prefer-default-export */
 export {default as Box} from './box'
 export * from './typo'

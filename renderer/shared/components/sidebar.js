@@ -195,13 +195,8 @@ function Nav() {
             ) : null}
           </Flex>
         </NavItem>
-        <NavItem
-          href="/ads/list"
-          icon={
-            <img src="/static/ads-icn.svg" alt="ads icon" className="icon" />
-          }
-        >
-          Ads
+        <NavItem href="/ads/list" icon={<Icon name="ads" size={5} />}>
+          {t('Ads')}
         </NavItem>
         <NavItem
           href="/settings/general"
