@@ -616,13 +616,11 @@ export function NavButton({type, bg, color, ...props}) {
       top="50%"
       left={isPrev && 0}
       right={isPrev || 0}
+      height={rem(600)}
       width={rem(280)}
+      transform="translate(0, -50%)"
+      overflow="hidden"
       zIndex={0}
-      css={{
-        transform: 'translate(0, -50%)',
-        overflow: 'hidden',
-        height: rem(600),
-      }}
       {...props}
     >
       <div>
