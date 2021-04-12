@@ -356,11 +356,6 @@ app.on('will-finish-launching', function() {
   })
 })
 
-app.on('before-quit', async () => {
-  await db.close()
-  mainWindow.forceClose = true
-})
-
 app.on('activate', showMainWindow)
 
 app.on('window-all-closed', () => {
@@ -552,11 +547,6 @@ function checkForUpdates() {
   runCheck()
 }
 
-// listen specific `node` messages
-ipcMain.on('node-log', ({sender}, message) => {
-  sender.send('node-log', message)
-})
-
 ipcMain.on('reload', () => {
   loadRoute(mainWindow, 'dashboard')
 })
@@ -583,6 +573,10 @@ ipcMain.handle('search-image', async (_, query) =>
   })
 )
 
+app.on('before-quit', async () => {
+  if (mainWindow) mainWindow.forceClose = true
+})
+
 process.on('beforeExit', async () => {
-  if (db.isOpen()) await db.close()
+  if (db?.isOpen()) await db.close()
 })
