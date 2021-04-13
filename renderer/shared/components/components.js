@@ -35,6 +35,11 @@ import {
   Icon,
   InputGroup,
   InputRightAddon,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
 } from '@chakra-ui/core'
 import {rem} from '../theme'
 import {IconButton2} from './button'
@@ -389,5 +394,56 @@ export function GoogleTranslateButton({
     >
       {children || 'Google Translate'}
     </IconButton2>
+  )
+}
+
+export function TabFilters({spacing, children, ...props}) {
+  return (
+    <Tabs variant="unstyled" size={8} alignSelf="stretch" {...props}>
+      <Stack spacing={spacing}>{children}</Stack>
+    </Tabs>
+  )
+}
+
+export function TabFilterList(props) {
+  return <Stack as={TabList} isInline {...props} />
+}
+
+// eslint-disable-next-line react/display-name
+export const TabFilter = React.forwardRef((props, ref) => (
+  <Tab
+    ref={ref}
+    color="muted"
+    fontWeight={500}
+    fontSize="md"
+    rounded="md"
+    h={8}
+    px={4}
+    _selected={{bg: 'gray.50', color: 'blue.500'}}
+    _hover={{bg: 'gray.50', color: 'blue.500'}}
+    {...props}
+  />
+))
+
+export function SimpleTabFilters({filters, children, ...props}) {
+  return (
+    <TabFilters {...props}>
+      <SimpleTabFilterList filters={filters}></SimpleTabFilterList>
+      <TabPanels>
+        {React.Children.map(children, (child, index) => (
+          <TabPanel key={index}>{child}</TabPanel>
+        ))}
+      </TabPanels>
+    </TabFilters>
+  )
+}
+
+export function SimpleTabFilterList({filters, ...props}) {
+  return (
+    <TabFilterList {...props}>
+      {filters.map(filter => (
+        <TabFilter key={filter}>{filter}</TabFilter>
+      ))}
+    </TabFilterList>
   )
 }
