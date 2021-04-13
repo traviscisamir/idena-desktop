@@ -1,9 +1,12 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import {useTranslation} from 'react-i18next'
-import {FlipFilter, FlipFilterOption} from '../../screens/flips/components'
 import {Page, PageTitle} from '../../screens/app/components'
 import Layout from '../../shared/components/layout'
+import {
+  FilterButton,
+  FilterButtonList,
+} from '../../shared/components/components'
 
 // eslint-disable-next-line react/prop-types
 function SettingsLayout({children}) {
@@ -14,18 +17,14 @@ function SettingsLayout({children}) {
     <Layout skipHardForkScreen>
       <Page>
         <PageTitle>{t('Settings')}</PageTitle>
-        <FlipFilter value={router.pathname} onChange={router.push}>
-          <FlipFilterOption value="/settings/general">
-            {t('General')}
-          </FlipFilterOption>
-          <FlipFilterOption value="/settings/node">
-            {t('Node')}
-          </FlipFilterOption>
-          <FlipFilterOption value="/settings/oracles">
+        <FilterButtonList value={router.pathname} onChange={router.push}>
+          <FilterButton value="/settings/general">{t('General')}</FilterButton>
+          <FilterButton value="/settings/node">{t('Node')}</FilterButton>
+          <FilterButton value="/settings/oracles">
             {t('Oracle voting')}
-          </FlipFilterOption>
-          <FlipFilterOption value="/settings/ads">{t('Ads')}</FlipFilterOption>
-        </FlipFilter>
+          </FilterButton>
+          <FilterButton value="/settings/ads">{t('Ads')}</FilterButton>
+        </FilterButtonList>
         {children}
       </Page>
     </Layout>

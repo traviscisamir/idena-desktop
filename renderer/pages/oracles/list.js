@@ -4,12 +4,10 @@ import {Box, Icon, Stack, Text, useToast} from '@chakra-ui/core'
 import {useTranslation} from 'react-i18next'
 import {useMachine} from '@xstate/react'
 import {Page, PageTitle} from '../../screens/app/components'
-import {
-  FlipFilter as FilterList,
-  FlipFilterOption as FilterOption,
-} from '../../screens/flips/components'
 import {IconLink} from '../../shared/components/link'
 import {
+  FilterButton,
+  FilterButtonList,
   FloatDebug,
   HDivider,
   Toast,
@@ -87,7 +85,7 @@ function VotingListPage() {
         <Stack isInline spacing={20} w="full" flex={1}>
           <Stack spacing={8}>
             <VotingSkeleton isLoaded={!current.matches('preload')}>
-              <FilterList
+              <FilterButtonList
                 value={filter}
                 display="flex"
                 alignItems="center"
@@ -95,24 +93,24 @@ function VotingListPage() {
                   if (value) send('FILTER', {value})
                 }}
               >
-                <FilterOption value={VotingListFilter.Todo}>
+                <FilterButton value={VotingListFilter.Todo}>
                   {t('To Do')}
-                </FilterOption>
-                <FilterOption value={VotingListFilter.Voting}>
+                </FilterButton>
+                <FilterButton value={VotingListFilter.Voting}>
                   {t('Running')}
-                </FilterOption>
-                <FilterOption value={VotingListFilter.Closed}>
+                </FilterButton>
+                <FilterButton value={VotingListFilter.Closed}>
                   {t('Closed')}
-                </FilterOption>
-                <FilterOption value="all">{t('All')}</FilterOption>
+                </FilterButton>
+                <FilterButton value="all">{t('All')}</FilterButton>
                 <VDivider />
-                <FilterOption value="own">
+                <FilterButton value="own">
                   <Stack isInline>
                     <Icon name="user" size={4} />
                     <Text>{t('My votings')}</Text>
                   </Stack>
-                </FilterOption>
-              </FilterList>
+                </FilterButton>
+              </FilterButtonList>
             </VotingSkeleton>
             <Stack spacing={6} w="md" flex={1}>
               {current.matches('failure') && (

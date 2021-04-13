@@ -17,8 +17,6 @@ import {Page, PageTitle} from '../../screens/app/components'
 import {
   FlipCardTitle,
   FlipCardSubtitle,
-  FlipFilter,
-  FlipFilterOption,
   RequiredFlipPlaceholder,
   OptionalFlipPlaceholder,
   FlipCardList,
@@ -40,7 +38,11 @@ import {
   IdentityStatus,
   FlipFilter as FlipFilterType,
 } from '../../shared/types'
-import {FloatDebug} from '../../shared/components/components'
+import {
+  FilterButton,
+  FilterButtonList,
+  FloatDebug,
+} from '../../shared/components/components'
 import {flipsMachine} from '../../screens/flips/machines'
 import {useIdentityState} from '../../shared/providers/identity-context'
 import {Notification} from '../../shared/components/notifications'
@@ -138,20 +140,20 @@ export default function FlipListPage() {
       <Page>
         <PageTitle>{t('My Flips')}</PageTitle>
         <Flex justify="space-between" align="center" alignSelf="stretch" mb={8}>
-          <FlipFilter
+          <FilterButtonList
             value={filter}
             onChange={value => send('FILTER', {filter: value})}
           >
-            <FlipFilterOption value={FlipFilterType.Active}>
+            <FilterButton value={FlipFilterType.Active}>
               {t('Active')}
-            </FlipFilterOption>
-            <FlipFilterOption value={FlipFilterType.Draft}>
+            </FilterButton>
+            <FilterButton value={FlipFilterType.Draft}>
               {t('Drafts')}
-            </FlipFilterOption>
-            <FlipFilterOption value={FlipFilterType.Archived}>
+            </FilterButton>
+            <FilterButton value={FlipFilterType.Archived}>
               {t('Archived')}
-            </FlipFilterOption>
-          </FlipFilter>
+            </FilterButton>
+          </FilterButtonList>
           <IconLink href="/flips/new" icon="plus-solid">
             {t('New flip')}
           </IconLink>
