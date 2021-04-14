@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import Router from 'next/router'
 import Head from 'next/head'
 import {ThemeProvider, CSSReset} from '@chakra-ui/core'
-import NProgress from 'nprogress'
 import GoogleFonts from 'next-google-fonts'
 import '../i18n'
 import {uiTheme} from '../shared/theme'
@@ -30,7 +28,6 @@ export default function App({Component, err, ...pageProps}) {
         <link href="/static/fonts/icons.css" rel="stylesheet" />
         <link href="/static/scrollbars.css" rel="stylesheet" />
       </Head>
-
       <ThemeProvider theme={uiTheme}>
         <CSSReset />
         <AppProviders>
@@ -64,7 +61,3 @@ function AppProviders(props) {
     </SettingsProvider>
   )
 }
-
-Router.events.on('routeChangeStart', NProgress.start)
-Router.events.on('routeChangeComplete', NProgress.done)
-Router.events.on('routeChangeError', NProgress.done)
