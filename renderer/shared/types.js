@@ -88,4 +88,6 @@ export const AdStatus = {
   PartiallyShowing: 'Partially showing',
   NotShowing: 'Not showing',
   Idle: 'Idle',
+  Reviewing: 'Reviewing',
+  Approved: 'Approved',
 }
