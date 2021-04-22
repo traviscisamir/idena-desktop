@@ -232,16 +232,15 @@ export function Toast({
   return (
     <Alert
       status={status}
+      alignItems="center"
       bg="white"
       boxShadow="0 3px 12px 0 rgba(83, 86, 92, 0.1), 0 2px 3px 0 rgba(83, 86, 92, 0.2)"
       color="brandGray.500"
       fontSize="md"
       pl={4}
       pr={actionContent ? 2 : 5}
-      pt={10}
-      pb={3}
       mb={5}
-      minH={44}
+      h={44}
       rounded="lg"
       {...props}
     >
@@ -250,7 +249,12 @@ export function Toast({
         <AlertTitle fontWeight={500} lineHeight="base">
           {title}
         </AlertTitle>
-        <AlertDescription color="muted" lineHeight="base" textAlign="left">
+        <AlertDescription
+          color="muted"
+          lineHeight="base"
+          textAlign="left"
+          isTruncated
+        >
           {description}
         </AlertDescription>
       </Flex>
@@ -502,14 +506,15 @@ export function Menu(props) {
   )
 }
 
-export function IconMenuItem({icon, color, children, ...props}) {
-  return (
-    <MenuItem color={color} {...props}>
+// eslint-disable-next-line react/display-name
+export const IconMenuItem = React.forwardRef(
+  ({icon, color, children, ...props}, ref) => (
+    <MenuItem ref={ref} color={color} {...props}>
       <MenuItemIcon name={icon} color={color} />
       {children}
     </MenuItem>
   )
-}
+)
 
 export function MenuItem(props) {
   return (
