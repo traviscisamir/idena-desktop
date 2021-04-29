@@ -46,6 +46,7 @@ import {
   MenuList as ChakraMenuList,
   MenuItem as ChakraMenuItem,
   MenuDivider as ChakraMenuDivider,
+  useToast,
 } from '@chakra-ui/core'
 import {IconButton2} from './button'
 
@@ -277,6 +278,31 @@ export function Toast({
       )}
     </Alert>
   )
+}
+
+export function useSuccessToast() {
+  const toast = useToast()
+  return message =>
+    toast({
+      // eslint-disable-next-line react/display-name
+      render: () => <Toast title={message} />,
+    })
+}
+
+export function useErrorToast() {
+  const toast = useToast()
+  return message =>
+    toast({
+      status: 'error',
+      // eslint-disable-next-line react/display-name
+      render: () => (
+        <Toast
+          status="error"
+          title={typeof message === 'string' ? message : message.title}
+          description={message?.description}
+        />
+      ),
+    })
 }
 
 export function Dialog({
