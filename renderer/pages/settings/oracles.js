@@ -1,16 +1,16 @@
-import {Box, Stack, Text, useToast} from '@chakra-ui/core'
+import {Box, Stack, Text} from '@chakra-ui/core'
 import {useTranslation} from 'react-i18next'
 import {SettingsSection} from '../../screens/settings/components'
 import {PrimaryButton} from '../../shared/components/button'
-import {Toast} from '../../shared/components/components'
+import {useSuccessToast} from '../../shared/components/components'
 import {useEpochState} from '../../shared/providers/epoch-context'
-import {requestDb} from '../../shared/utils/db'
+import {dbProxy} from '../../shared/utils/db'
 import SettingsLayout from './layout'
 
 export default function OracleSettings() {
   const {t} = useTranslation()
 
-  const toast = useToast()
+  const toast = useSuccessToast()
 
   const epochState = useEpochState()
 
@@ -28,11 +28,8 @@ export default function OracleSettings() {
               </Box>
               <PrimaryButton
                 onClick={async () => {
-                  await global.sub(requestDb(), 'votings').clear()
-                  toast({
-                    // eslint-disable-next-line react/display-name
-                    render: () => <Toast title={t('Votings removed')} />,
-                  })
+                  await dbProxy.clear('votings')
+                  toast(t('Votings removed'))
                 }}
               >
                 {t('Clear cache')}
