@@ -1,4 +1,4 @@
-# Idena Desktop
+# Idena Desktop 1
 
 > Idena Desktop client for Windows, Mac, and Linux.
 
