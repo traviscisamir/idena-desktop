@@ -49,7 +49,6 @@ matrix:
       script:
         - npm run lint
         - npm run build
-        - xvfb-maybe npm run e2e
 
 env:
   global:
