@@ -48,7 +48,7 @@ matrix:
         - npm install -g xvfb-maybe
       script:
         - npm run lint
-        - npm run build
+        - npm run dist:linux
 
 env:
   global:
